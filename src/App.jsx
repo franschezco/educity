@@ -14,12 +14,16 @@ const App = () => {
             <div className='container'>
                 <Title subTitle='OUR PROGRAM' title= 'What we Offer'/>
             <Programs/>
-            </div>
+            
             <About/>
             <Title subTitle='Gallery' title= 'Campus Photos'/>
             <Campus/>
+            </div>
             <Title subTitle='Testimonials' title= 'What Students Says'/>
+            <div className='container'>
             <Testimonials/>
+            <Title subTitle='Contact Us' title= 'Get In Touch'/>
+            </div>
 
 
         </div>
