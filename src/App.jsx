@@ -6,6 +6,8 @@ import Title from './componets/title/Title';
 import About from './componets/about/About';
 import Campus from './componets/campus/Campus';
 import Testimonials from './componets/testimonials/Testimonials';
+import Contact from './componets/contact/Contact';
+import Footer from './componets/footer/Footer';
 const App = () => {
     return (
         <div>
@@ -23,6 +25,8 @@ const App = () => {
             <div className='container'>
             <Testimonials/>
             <Title subTitle='Contact Us' title= 'Get In Touch'/>
+            <Contact/>
+            <Footer/>
             </div>
 
 
