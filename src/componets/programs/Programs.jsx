@@ -1,41 +1,70 @@
-import React from 'react'
-import './Programs.css'
-import program_1 from '../../assets/program-1.png'
-import program_2 from '../../assets/program-2.png'
-import program_3 from '../../assets/program-3.png'
-import program_icon_1 from '../../assets/program-icon-1.png'
-import program_icon_2 from '../../assets/program-icon-2.png'
-import program_icon_3 from '../../assets/program-icon-3.png'
+import React, { useEffect, useRef } from 'react';
+import './Programs.css';
+import program_1 from '../../assets/program-1.png';
+import program_2 from '../../assets/program-2.png';
+import program_3 from '../../assets/program-3.png';
+import program_icon_1 from '../../assets/program-icon-1.png';
+import program_icon_2 from '../../assets/program-icon-2.png';
+import program_icon_3 from '../../assets/program-icon-3.png';
 
 const Programs = () => {
+  const programRefs = useRef([]);
+
+  // Intersection Observer to trigger fade-in effect
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          } else {
+            entry.target.classList.remove('animate');
+          }
+        });
+      },
+      { threshold: 0.1 } // Trigger when 10% of the element is visible
+    );
+
+    programRefs.current.forEach((program) => {
+      if (program) {
+        observer.observe(program);
+      }
+    });
+
+    return () => {
+      programRefs.current.forEach((program) => {
+        if (program) {
+          observer.unobserve(program);
+        }
+      });
+    };
+  }, []);
+
   return (
     <div className='programs'>
-      <div className="program">
-      <img src={program_1} alt="" srcset="" />
-      <div className='caption'>
-        <img src={program_icon_1} alt="" srcset="" />
-        <p>Graduation Degree</p>
-
+      <div className="program" ref={(el) => (programRefs.current[0] = el)}>
+        <img src={program_1} alt="" />
+        <div className='caption'>
+          <img src={program_icon_1} alt="" />
+          <p>Graduation Degree</p>
+        </div>
       </div>
+      <div className="program" ref={(el) => (programRefs.current[1] = el)}>
+        <img src={program_2} alt="" />
+        <div className='caption'>
+          <img src={program_icon_2} alt="" />
+          <p>Master Degree</p>
+        </div>
       </div>
-      <div className="program">
-      <img src={program_2} alt="" srcset="" />
-      <div className='caption'>
-        <img src={program_icon_2} alt="" srcset="" />
-        <p>Master Degree</p>
-
-      </div>
-      </div>
-      <div className="program">
-      <img src={program_3} alt="" srcset="" />
-      <div className='caption'>
-        <img src={program_icon_3} alt="" srcset="" />
-        <p>Post Graduation</p>
-
-      </div>
+      <div className="program" ref={(el) => (programRefs.current[2] = el)}>
+        <img src={program_3} alt="" />
+        <div className='caption'>
+          <img src={program_icon_3} alt="" />
+          <p>Post Graduation</p>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Programs
+export default Programs;
