@@ -1,29 +1,175 @@
-nav{
+/* Base Styles */
+nav {
     width: 100%;
     background: transparent;
     color: #fff;
-    padding: 4px 0;
+    padding: 10px 20px;
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 10;
-
-
-}
-.logo{
-    width: 180px;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
 }
 
-nav ul li{
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+nav ul li {
     display: inline-block;
     list-style: none;
-    margin: 5px 20px;
+    margin: 0 15px;
     font-size: 16px;
 }
-.dark-nav{
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #f0c040;
+}
+
+.btn {
+    background-color: #f0c040;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #212EA0;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #e0b030;
+}
+
+.dark-nav {
     background: #212EA0;
-    transition: 0.5;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px;
+}
+
+.hamburger img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 1024px) {
+    .logo {
+        width: 130px; /* Reduce logo size for tablets */
+    }
+
+    nav ul li {
+        font-size: 14px; /* Slightly smaller text size on tablets */
+    }
+
+    .btn {
+        padding: 6px 12px; /* Reduce padding for the button on tablets */
+        font-size: 14px;
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: #212EA0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+    }
+
+    nav ul.open {
+        transform: translateX(0);
+    }
+
+    nav ul li {
+        margin: 20px 0;
+        font-size: 18px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger img {
+        width: 25px; /* Smaller hamburger icon for mobile */
+        height: 25px;
+    }
+
+    .logo {
+        width: 110px; /* Further reduce logo size for mobile */
+    }
+
+    .btn {
+        padding: 6px 10px; /* Slightly smaller padding for the button on mobile */
+        font-size: 12px;
+        text-transform: none; /* Make text lowercase or sentence case */
+    }
+}
+
+/* Small Mobile Styles (below 480px) */
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    nav ul li {
+        font-size: 16px; /* Maintain readability */
+    }
+
+    .btn {
+        padding: 5px 8px; /* Further reduce button size */
+        font-size: 11px;
+        text-transform: none;
+    }
+
+    .hamburger img {
+        width: 15px; /* Even smaller hamburger icon for very small screens */
+        height: 15px;
+    }
+}
+
+/* Small Mobile Styles (below 480px) */
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    nav ul li {
+        font-size: 16px; /* Maintain readability */
+    }
+
+    .btn {
+        padding: 5px 10px; /* Further reduce button size */
+        font-size: 12px;
+    }
 }
