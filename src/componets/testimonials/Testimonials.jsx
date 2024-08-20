@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Testimonials.css';
 import next_icon from '../../assets/next-icon.png';
 import back_icon from '../../assets/back-icon.png';
@@ -11,30 +11,47 @@ const Testimonials = () => {
     const slider = useRef(null);
     let tx = 0;
 
+    useEffect(() => {
+        const slides = slider.current.querySelectorAll('.slide');
+        slides.forEach((slide, index) => {
+            if (index === 0) slide.classList.add('active');
+        });
+    }, []);
+
     const slideForward = () => {
-        if (tx > -50) {
+        const slides = slider.current.querySelectorAll('.slide');
+        slides.forEach(slide => slide.classList.remove('active'));
+
+        if (tx > -75) { // Adjusted for four slides
             tx -= 25;
         }
+
         slider.current.style.transform = `translateX(${tx}%)`;
+        slides[-tx / 25].classList.add('active');
     };
 
     const slideBackward = () => {
+        const slides = slider.current.querySelectorAll('.slide');
+        slides.forEach(slide => slide.classList.remove('active'));
+
         if (tx < 0) {
             tx += 25;
         }
+
         slider.current.style.transform = `translateX(${tx}%)`;
+        slides[-tx / 25].classList.add('active');
     };
 
     return (
         <div className='testimonial'>
-            <img src={next_icon} alt="" className='next-btn' onClick={slideForward} />
-            <img src={back_icon} alt="" className='back-btn' onClick={slideBackward} />
+            <img src={next_icon} alt="Next" className='next-btn' onClick={slideForward} />
+            <img src={back_icon} alt="Back" className='back-btn' onClick={slideBackward} />
             <div className="slider">
                 <ul ref={slider}>
                     <li>
                         <div className='slide'>
                             <div className="user-info">
-                                <img src={user_1} alt="" />
+                                <img src={user_1} alt="William Jackson" />
                                 <div>
                                     <h3>William Jackson</h3>
                                     <span>Edusity, USA</span>
@@ -46,7 +63,7 @@ const Testimonials = () => {
                     <li>
                         <div className='slide'>
                             <div className="user-info">
-                                <img src={user_2} alt="" />
+                                <img src={user_2} alt="Sarah Connor" />
                                 <div>
                                     <h3>Sarah Connor</h3>
                                     <span>TechEd, UK</span>
@@ -58,7 +75,7 @@ const Testimonials = () => {
                     <li>
                         <div className='slide'>
                             <div className="user-info">
-                                <img src={user_3} alt="" />
+                                <img src={user_3} alt="Michael Smith" />
                                 <div>
                                     <h3>Michael Smith</h3>
                                     <span>EduCorp, Australia</span>
@@ -70,7 +87,7 @@ const Testimonials = () => {
                     <li>
                         <div className='slide'>
                             <div className="user-info">
-                                <img src={user_4} alt="" />
+                                <img src={user_4} alt="Laura Williams" />
                                 <div>
                                     <h3>Laura Williams</h3>
                                     <span>EduNet, Canada</span>

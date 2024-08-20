@@ -1,66 +1,127 @@
-.testimonial{
+/* Base Styles */
+.testimonial {
     margin: 80px auto;
-    padding: 0 80px;
+    padding: 0 40px;
     position: relative;
+    max-width: 1200px;
 }
 
-.next-btn, .back-btn{
- position: absolute;
- top: 50%;
- right: 0;
- transform: translateY(-50%);
- padding: 15px;
- width: 50px;
- border-radius: 50%;
- cursor: pointer;
- background: #212EA0;
+.next-btn, .back-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 15px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: #212EA0;
+    z-index: 10;
+    transition: transform 0.3s ease;
 }
 
-.back-btn{
-    right: auto;
-    left: 0;
+.next-btn:hover, .back-btn:hover {
+    transform: translateY(-50%) scale(1.1);
 }
 
-.slider{
+.back-btn {
+    left: -30px;
+}
+
+.next-btn {
+    right: -30px;
+}
+
+.slider {
     overflow: hidden;
+    padding: 20px 0;
 }
 
-.slider ul{
-display: flex;
-width:200%;
-overflow-x: hidden;
-transition:0.5s;
-
-
+.slider ul {
+    display: flex;
+    width: 400%; /* Updated for better sliding effect */
+    overflow-x: hidden;
+    transition: transform 0.5s ease;
 }
 
-.slider ul li{
+.slider ul li {
     list-style: none;
-    width: 50%;
+    width: 25%; /* Four items in the slider */
     padding: 20px;
+    box-sizing: border-box;
 }
 
-.slide{
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
-    padding :40px;
+.slide {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    padding: 40px;
     border-radius: 10px;
+    background: white;
     color: #676767;
-    line-height: 1.4;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
 .slide img {
     width: 65px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 15px;
     border: 4px solid #212EA0;
 }
 
 .user-info {
-    display :flex ;
+    display: flex;
     align-items: center;
     margin-bottom: 20px;
     font-size: 15px;
 }
 
-.user-info h3{
+.user-info h3 {
     color: #212EA0;
+    margin: 0;
+}
+
+.user-info span {
+    color: #9a9a9a;
+    display: block;
+    font-size: 14px;
+}
+
+/* Fade-in Animation */
+.slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+    .slider ul li {
+        width: 50%; /* Two items in view */
+    }
+
+    .back-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .slider ul li {
+        width: 100%; /* One item in view */
+    }
+
+    .back-btn, .next-btn {
+        width: 40px;
+    }
+
+    .slide {
+        padding: 20px;
+    }
+
+    .slide img {
+        width: 50px;
+    }
 }

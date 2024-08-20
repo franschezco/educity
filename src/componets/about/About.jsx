@@ -1,16 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './About.css';
 import about_img from '../../assets/about.png';
 import play_icon from '../../assets/play-icon.png';
 
 const About = () => {
+  const aboutLeftRef = useRef(null);
+  const aboutRightRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          entry.target.classList.remove('animate');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    if (aboutLeftRef.current) {
+      observer.observe(aboutLeftRef.current);
+    }
+    
+    if (aboutRightRef.current) {
+      observer.observe(aboutRightRef.current);
+    }
+
+    return () => {
+      if (aboutLeftRef.current) {
+        observer.unobserve(aboutLeftRef.current);
+      }
+      
+      if (aboutRightRef.current) {
+        observer.unobserve(aboutRightRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className='about'>
-      <div className="about-left">
+      <div className="about-left" ref={aboutLeftRef}>
         <img src={about_img} alt="About" className="about-img" />
         <img src={play_icon} alt="Play" className="play-icon" />
       </div>
-      <div className="about-right">
+      <div className="about-right" ref={aboutRightRef}>
         <h3>ABOUT UNIVERSITY</h3>
         <h2>Nurturing Tomorrow's Leaders Today</h2>
         <p>
@@ -29,4 +70,3 @@ const About = () => {
 };
 
 export default About;
-
