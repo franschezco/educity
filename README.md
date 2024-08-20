@@ -2,6 +2,9 @@
 
 Welcome to **Edusity**, an educational platform designed to nurture tomorrow's leaders today. This project showcases a modern, responsive, and visually appealing website that includes various sections such as a hero section, programs, testimonials, contact information, and more.
 
+
+![Alt text](https://github.com/franschezco/educity/blob/main/figma.png)
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -18,6 +21,12 @@ Welcome to **Edusity**, an educational platform designed to nurture tomorrow's l
 
 Edusity is a modern web platform designed for educational institutions. It includes several key sections that highlight the services and opportunities provided by the institution, such as educational programs, testimonials, a campus gallery, and contact information.
 
+
+## Design
+
+The design for this project was created using Figma. You can view the design prototype by following the link below:
+
+[View the Figma Design](https://www.figma.com/design/L6NjszKVxFMjZuq8ngnCee/Educity?node-id=1-2&t=aCylEbYf2j99oLQh-1)
 ## Features
 
 - **Hero Section**: Dynamic hero section with image transitions and text animations.
